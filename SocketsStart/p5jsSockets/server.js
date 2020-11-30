@@ -10,7 +10,7 @@ let handleRequest = function (request, response) {
                 response.writeHead(500);
                 return response.end('Error loading index.html');    
             }
-            response.writeHead(200, {'Content-Type': 'text/plain'});
+            response.writeHead(200);
             response.end(data);
         }
     );
