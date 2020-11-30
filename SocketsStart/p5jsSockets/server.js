@@ -1,11 +1,20 @@
-
+const http = require('http');
+const path = require('path');
+const fs = require('fs');
 
 let handleRequest = function (request, response) {
-    response.writeHead(200, {'Content-Type': 'text/plain'});
-    response.end('Hello World\n');
+    fs.readFile(__dirname + '/index.html', 
+    //Callback funtion for reading
+        function(err, data){
+            if(err){
+                response.writeHead(500);
+                return response.end('Error loading index.html');    
+            }
+            response.writeHead(200, {'Content-Type': 'text/plain'});
+            response.end(data);
+        }
+    );
 };
-
-let http = require('http');
 
 let server = http.createServer(handleRequest);
 
